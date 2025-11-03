@@ -1,0 +1,42 @@
+---
+import Copy from "./icons/Copy.astro";
+---
+
+<section class="mt-10 w-1/2">
+  <div
+    class="flex bg-[#333333] p-6 rounded-3xl flex-col border-2 border-zinc-700"
+  >
+    <div class="flex justify-between items-center">
+      <p class="text-white text-lg font-semibold">Tu prompt personalizado</p>
+      <button
+        class="bg-[#374151] flex justify-center items-center px-4 py-2 text-sm rounded-2xl gap-2"
+      >
+        <Copy class="w-4 h-4" />
+        Copiar Prompt
+      </button>
+    </div>
+    <div class="text-zinc-400 mt-4">
+      <p>
+        Actúa como un tutor personal experto en [Habilidad]. Mi objetivo es
+        alcanzar un nivel [Nivel Meta] en [Tiempo Objetivo], dedicando [Horas
+        por semana].
+      </p>
+      <p>
+        Mis preferencias de aprendizaje son [Preferencias de Aprendizaje]. Mi
+        rutina de estudio es [Rutina Diaria].
+      </p>
+      <p>Mis KPIs para medir el éxito son: [KPIs].</p>
+      <p>
+        Basado en esto, crea un plan de estudio detallado, semana a semana. El
+        plan debe ser práctico, con proyectos y ejercicios. Explica los
+        conceptos complejos con analogías simples y proporciona recursos
+        recomendados (libros, cursos, videos). Al final de cada semana, incluye
+        un pequeño test para evaluar mi progreso.
+      </p>
+      <p class="opacity-50
+          mt-8">
+        Tu prompt personalizado aparecerá aquí...
+      </p>
+    </div>
+  </div>
+</section>
