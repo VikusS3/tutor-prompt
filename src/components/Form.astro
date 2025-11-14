@@ -1,65 +1,104 @@
-<section class="mt-10 text-white/90 w-1/2">
-  <form class="flex flex-col gap-5">
+<section class="mt-10 text-white/90 w-1/2 animate-fade-in-down">
+  <form class="flex flex-col gap-5" id="promptForm">
     <label for="">
       Habilidad que quieres mejorar
       <input
         type="text"
-        name="name"
-        id="name"
+        name="HABILIDAD"
+        id="HABILIDAD"
         placeholder="Ej: Programación en Python para Data Science"
       />
     </label>
     <div class="flex gap-2">
       <label for="">
         Tiempo Objetivo:
-        <input type="text" name="time" id="time" placeholder="Ej: 3 meses" />
+        <input
+          type="text"
+          name="TIEMPO_OBJETIVO"
+          id="TIEMPO_OBJETIVO"
+          placeholder="Ej: 3 meses"
+        />
       </label>
       <label for="">
         Horas por semana:
-        <input type="text" name="hours" id="hours" placeholder="Ej: 10 horas" />
+        <input
+          type="number"
+          name="HORAS_SEMANA"
+          id="HORAS_SEMANA"
+          placeholder="Ej: 10 horas"
+        />
       </label>
     </div>
     <label for="">
       Nivel de meta
-      <select name="level" id="level">
+      <select name="NIVEL_META" id="NIVEL_META">
         <option value="basico">Basico</option>
         <option selected value="intermedio">Intermedio</option>
         <option value="avanzado">Avanzado</option>
       </select>
     </label>
     <label for="">
+      Limitaciones o restricciones
+      <textarea
+        name="LIMITACIONES"
+        id="LIMITACIONES"
+        placeholder="Ej: Solo puedo estudiar por las mañanas, no tengo acceso a cursos pagos, etc."
+      ></textarea>
+    </label>
+    <label for="">
       Preferencias de aprendizaje
       <textarea
-        name="preferences"
-        id="preferences"
+        name="PREFERENCIAS_APRENDIZAJE"
+        id="PREFERENCIAS_APRENDIZAJE"
         placeholder="Ej: Aprendo mejor con proyectos prácticos, analogías, videos, etc."
       ></textarea>
     </label>
     <label for="">
       Rutina diaria
       <textarea
-        name="routine"
-        id="routine"
+        name="RUTINA_DIARIA"
+        id="RUTINA_DIARIA"
         placeholder="Ej: Puedo estudiar de 7am a 9am entre semana"></textarea>
     </label>
     <label for="">
       KPIs (Key Performance Indicators)
       <input
         type="text"
-        name="kpis"
-        id="kpis"
+        name="KPIS"
+        id="KPIS"
         placeholder="Ej: Crear 3 proyectos en para mi portfolio"
       />
     </label>
 
     <button
-      class="bg-blue-400/80 shadow-md shadow-blue-500/50 text-white px-4 py-2 rounded-full cursor-pointer"
+      class="bg-blue-400/80 text-white px-4 py-2 rounded-full cursor-pointer"
       type="submit"
     >
       ✨ Generar prompt</button
     >
   </form>
 </section>
+
+<script>
+  import { generatePrompt } from "~/lib/generatePrompt";
+
+  document.getElementById("promptForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(
+      Array.from(formData, ([k, v]) => [k, String(v)])
+    ) as Record<string, string>;
+
+    const prompt = generatePrompt(data);
+
+    const result = document.getElementById("resultado");
+    if (result) {
+      result.textContent = prompt;
+    }
+  });
+</script>
 
 <style>
   label {
@@ -99,5 +138,15 @@
   textarea,
   select:focus {
     outline: none;
+  }
+
+  button {
+    transition:
+      background-color 0.3s,
+      box-shadow 0.3s;
+  }
+  button:hover {
+    background-color: #3b82f6;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.39);
   }
 </style>
